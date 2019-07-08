@@ -17,6 +17,22 @@ class MenusController < ApplicationController
 
     bento = dairy_doc.css('.entry-content')
     bento_str = bento.to_html.gsub(%r{</?[^>]+?>},'').strip.gsub('●','').chomp
-    render json: {menu: bento_str} 
+    response = {
+      payload: {
+        google: {
+          expentUserRespnse: false,
+            richResponse: {
+              items: [
+                  {
+                    simpleResponse: {
+                      textToSpeech: bento_str
+                    }
+                  }
+              ]
+            }
+        }
+      }
+    }
+    render json: response 
   end
 end
