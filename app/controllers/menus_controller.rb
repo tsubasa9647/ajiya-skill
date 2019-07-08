@@ -17,7 +17,6 @@ class MenusController < ApplicationController
 
     bento = dairy_doc.css('.entry-content')
     bento_str = bento.to_html.gsub(%r{</?[^>]+?>},'').strip.gsub('●','').chomp
-
-    puts bento_str
+    render json: {menu: bento_str} 
   end
 end
